@@ -371,18 +371,22 @@ pip install -r requirements.txt
 cd ../ui
 npm install
 
-# 4. Pull models
-ollama pull qwen2.5:7b-instruct
+# 4. Pull models — start with the smallest, upgrade only if you need to (see below)
+ollama pull qwen2.5:0.5b
 ollama pull bge-m3
 ```
+
+### Model sizing — start small
+
+Try `qwen2.5:0.5b` first for `CHAT_MODEL` / `AGENT_MODEL` / `CLASSIFIER_MODEL` (`ollama run qwen2.5:0.5b` to sanity-check it locally). It's a fraction of the size of `qwen2.5:7b-instruct` or `medgemma:latest`, pulls in seconds instead of minutes, and responds far faster — and because the heavy lifting here is the RAG retrieval (hybrid RRF narrows the context to the right chunks) and the guardrail pipeline (regex/terms tiers do most of the filtering before any LLM call), a small model answering from a tightly-scoped context does the job. Only reach for a bigger model (`qwen2.5:7b-instruct`, `medgemma:latest`, etc.) if you see tool-calling reliability issues or the answers need more nuance than the small model gives you.
 
 ### Environment Variables
 
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `OLLAMA_URL` | `http://localhost:11434` | Ollama server URL |
-| `AGENT_MODEL` | `qwen2.5:7b-instruct` | Model for tool calling |
-| `CLASSIFIER_MODEL` | `qwen2.5:7b-instruct` | Model for Tier 3 guardrail |
+| `AGENT_MODEL` | `qwen2.5:7b-instruct` | Model for tool calling — start with `qwen2.5:0.5b` (see "Model sizing" above), only upgrade if needed |
+| `CLASSIFIER_MODEL` | `qwen2.5:7b-instruct` | Model for Tier 3 guardrail — same sizing advice as `AGENT_MODEL` |
 | `MAX_AGENT_ITERATIONS` | `5` | Max tool-calling loops |
 | `OLLAMA_NUM_CTX` | `4096` | Context window size |
 | `CHITCHAT_DISTANCE_THRESHOLD` | `0.70` | Cosine distance gate |
@@ -391,7 +395,7 @@ ollama pull bge-m3
 ### GitHub Codespaces
 
 ```bash
-ollama pull qwen2.5:7b-instruct && ollama pull bge-m3
+ollama pull qwen2.5:0.5b && ollama pull bge-m3
 docker compose up -d
 cd api && pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8003 --reload &
