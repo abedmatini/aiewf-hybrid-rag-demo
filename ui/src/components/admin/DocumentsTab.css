@@ -1,0 +1,280 @@
+/* ── Upload section ───────────────────────────────────────────────── */
+.docs-tab__upload,
+.docs-tab__list {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+}
+
+.docs-tab__heading {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.docs-tab__count {
+  font-size: 12px;
+  font-weight: 500;
+  background: #f3f4f6;
+  color: #6b7280;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.docs-tab__hint {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 16px;
+}
+
+/* ── Upload controls ─────────────────────────────────────────────── */
+.upload-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.upload-controls__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.upload-controls__select {
+  font-size: 13px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  color: #374151;
+  cursor: pointer;
+  min-width: 220px;
+}
+.upload-controls__select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.upload-controls__btn {
+  background: #003087;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.upload-controls__btn:hover:not(:disabled) {
+  background: #002470;
+}
+.upload-controls__btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.upload-feedback {
+  margin: 12px 0 0;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+.upload-feedback--ok {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+.upload-feedback--error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+.upload-feedback--progress {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #93c5fd;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.upload-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #93c5fd;
+  border-top-color: #1d4ed8;
+  border-radius: 50%;
+  animation: upload-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes upload-spin {
+  to { transform: rotate(360deg); }
+}
+
+.docs-tab__upload--screenshot {
+  border-color: #c7d2fe;
+  background: linear-gradient(180deg, #fafbff 0%, #fff 100%);
+}
+
+.upload-controls__btn--secondary {
+  background: #4338ca;
+}
+.upload-controls__btn--secondary:hover:not(:disabled) {
+  background: #3730a3;
+}
+
+.upload-controls__btn--ghost {
+  background: #fff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+.upload-controls__btn--ghost:hover:not(:disabled) {
+  background: #f9fafb;
+}
+
+.screenshot-preview {
+  margin-top: 16px;
+}
+
+.screenshot-preview__controls {
+  margin-bottom: 12px;
+}
+
+.screenshot-preview__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.screenshot-preview__textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 200px;
+  color: #111827;
+}
+
+.screenshot-preview__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+/* ── Documents table ─────────────────────────────────────────────── */
+.docs-empty {
+  color: #9ca3af;
+  font-size: 14px;
+  text-align: center;
+  padding: 32px 0;
+}
+
+.docs-table-wrapper {
+  overflow-x: auto;
+}
+
+.docs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.docs-table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-weight: 600;
+  color: #374151;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.docs-table__row td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+  color: #1f2937;
+}
+.docs-table__row--archived td {
+  opacity: 0.65;
+}
+
+.docs-table__name {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Status pill ─────────────────────────────────────────────────── */
+.status-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.status-pill--active {
+  background: #dcfce7;
+  color: #166534;
+}
+.status-pill--archived {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* ── Row action buttons ──────────────────────────────────────────── */
+.docs-table__actions {
+  display: flex;
+  gap: 6px;
+}
+
+.action-btn {
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.action-btn:hover {
+  opacity: 0.8;
+}
+.action-btn--chunks {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+.action-btn--archive {
+  background: #e5e7eb;
+  color: #374151;
+}
+.action-btn--restore {
+  background: #d1fae5;
+  color: #065f46;
+}
+.action-btn--delete {
+  background: #fee2e2;
+  color: #991b1b;
+}

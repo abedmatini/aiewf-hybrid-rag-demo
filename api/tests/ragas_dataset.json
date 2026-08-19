@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What is vitamin D?",
+    "ground_truth": "Vitamin D is a fat-soluble vitamin that helps the body absorb calcium and phosphorus. It is essential for bone health and immune function."
+  },
+  {
+    "question": "What are the active ingredients in Tylenol Regular Strength?",
+    "ground_truth": "The active ingredient in Tylenol Regular Strength is acetaminophen 325 mg per tablet."
+  },
+  {
+    "question": "What are the active ingredients in Tylenol Extra Strength?",
+    "ground_truth": "The active ingredient in Tylenol Extra Strength is acetaminophen 500 mg per tablet or caplet."
+  },
+  {
+    "question": "What is acetaminophen used for?",
+    "ground_truth": "Acetaminophen is an analgesic and antipyretic used to relieve mild to moderate pain and reduce fever."
+  },
+  {
+    "question": "What is Motrin IB used for?",
+    "ground_truth": "Motrin IB contains ibuprofen and is used for the temporary relief of minor aches and pains due to headache, muscular aches, backache, toothache, and minor arthritis pain. It also temporarily reduces fever."
+  },
+  {
+    "question": "What is the active ingredient in Motrin?",
+    "ground_truth": "The active ingredient in Motrin is ibuprofen, a nonsteroidal anti-inflammatory drug (NSAID)."
+  },
+  {
+    "question": "What is Benadryl used for?",
+    "ground_truth": "Benadryl (diphenhydramine) is an antihistamine used to relieve symptoms of allergy, hay fever, and the common cold. It can also be used as a nighttime sleep aid."
+  },
+  {
+    "question": "What is the active ingredient in Benadryl?",
+    "ground_truth": "The active ingredient in Benadryl is diphenhydramine hydrochloride, a first-generation antihistamine."
+  },
+  {
+    "question": "What are the main benefits of omega-3 fatty acids?",
+    "ground_truth": "Omega-3 fatty acids support cardiovascular health, brain function, and reduce inflammation. They are found in fish oil supplements."
+  },
+  {
+    "question": "What is Listerine used for?",
+    "ground_truth": "Listerine is an antiseptic mouthwash used to kill germs that cause bad breath, plaque, and gingivitis. It helps maintain oral hygiene."
+  }
+]

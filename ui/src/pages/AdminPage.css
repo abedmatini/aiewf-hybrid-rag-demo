@@ -1,0 +1,148 @@
+/* ── Admin layout ─────────────────────────────────────────────────── */
+.admin-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Admin header ─────────────────────────────────────────────────── */
+.admin-header {
+  background: #003087;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.admin-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-header__logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #E31837;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+}
+
+.admin-header__title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.admin-header__badge {
+  background: #E31837;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.admin-header__back {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.admin-header__back:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* ── Tab navigation ───────────────────────────────────────────────── */
+.admin-nav {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  padding: 0 24px;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+.admin-tab {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px 20px;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.admin-tab:hover {
+  color: #003087;
+}
+.admin-tab--active {
+  color: #003087;
+  border-bottom-color: #003087;
+  font-weight: 600;
+}
+
+.admin-tab:focus-visible {
+  outline: 2px solid #003087;
+  outline-offset: -3px;
+}
+
+.admin-header__back:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ── Content area ─────────────────────────────────────────────────── */
+.admin-content {
+  flex: 1;
+  padding: 32px 24px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ── Mobile ────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .admin-header {
+    padding: 0 12px;
+  }
+  .admin-header__badge {
+    display: none;
+  }
+  .admin-nav {
+    padding: 0 8px;
+  }
+  .admin-tab {
+    padding: 12px 12px;
+    font-size: 13px;
+  }
+  .admin-content {
+    padding: 16px 12px;
+  }
+  /* Make any tables inside the admin panel scroll horizontally */
+  .admin-content table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,609 @@
+/* All styles are injected into a Shadow DOM root — no leakage to/from host page.
+   All class names are prefixed with kw- to avoid any theoretical conflicts.      */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ── FAB wrapper ──────────────────────────────────────────────────────────── */
+.kw-root {
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1a1a2e;
+}
+
+/* ── Floating action button ────────────────────────────────────────────────── */
+.kw-fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #003087;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 18px rgba(0, 48, 135, 0.38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  line-height: 1;
+}
+
+.kw-fab:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 24px rgba(0, 48, 135, 0.48);
+}
+
+.kw-fab:focus-visible {
+  outline: 3px solid #5b8ef0;
+  outline-offset: 3px;
+}
+
+/* ── Chat panel ─────────────────────────────────────────────────────────────── */
+.kw-panel {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
+  width: 360px;
+  height: 520px;
+  background: #f5f6f8;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: kw-in 0.2s ease;
+}
+
+@keyframes kw-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* Mobile: full-screen panel */
+@media (max-width: 480px) {
+  .kw-panel {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 88vh;
+    border-radius: 16px 16px 0 0;
+  }
+}
+
+/* ── Panel header ───────────────────────────────────────────────────────────── */
+.kw-panel__header {
+  background: #003087;
+  color: #fff;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.kw-panel__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.kw-panel__close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0.2rem 0.35rem;
+  border-radius: 4px;
+  line-height: 1;
+  transition: color 0.15s, background 0.15s;
+}
+
+.kw-panel__close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Chat area ──────────────────────────────────────────────────────────────── */
+.kw-chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.kw-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.kw-messages__empty {
+  color: #999;
+  font-size: 0.82rem;
+  text-align: center;
+  margin: auto;
+}
+
+/* ── Suggestion chips ───────────────────────────────────────────────────────── */
+.kw-sugg-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+  padding: 0 0.1rem;
+}
+
+.kw-sugg-chip {
+  background: #fff;
+  border: 1.5px solid #c8d4f0;
+  border-radius: 9px;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.78rem;
+  color: #003087;
+  text-align: left;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.kw-sugg-chip:hover,
+.kw-sugg-chip:focus-visible {
+  background: #eef2fc;
+  border-color: #003087;
+  outline: none;
+}
+
+.kw-sugg-chip--skeleton {
+  height: 3.4rem;
+  background: linear-gradient(90deg, #f0f2f7 25%, #e4e8f2 50%, #f0f2f7 75%);
+  background-size: 200% 100%;
+  animation: kw-shimmer 1.4s infinite;
+  border: none;
+  cursor: default;
+  pointer-events: none;
+  border-radius: 9px;
+}
+
+@keyframes kw-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Message bubbles ────────────────────────────────────────────────────────── */
+.kw-msg { display: flex; }
+.kw-msg--user      { justify-content: flex-end; }
+.kw-msg--assistant { justify-content: flex-start; }
+
+.kw-bubble {
+  max-width: 82%;
+  padding: 0.6rem 0.85rem;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.kw-msg--user .kw-bubble {
+  background: #003087;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.kw-msg--assistant .kw-bubble {
+  background: #fff;
+  border: 1px solid #e4e6ea;
+  border-bottom-left-radius: 4px;
+  color: #1a1a2e;
+}
+
+.kw-msg--escalation .kw-bubble {
+  background: #fffbeb;
+  border: 1.5px solid #f59e0b;
+  color: #78350f;
+}
+
+.kw-escalation-badge {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #b45309;
+  margin-bottom: 0.35rem;
+}
+
+/* ── Agent mode badge ───────────────────────────────────────────────────────── */
+.kw-agent-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  background: #eff6ff;
+  border-bottom: 1px solid #dbeafe;
+  font-size: 11px;
+  font-weight: 500;
+  color: #1d4ed8;
+  flex-shrink: 0;
+}
+
+.kw-agent-badge__dot {
+  width: 6px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: kw-pulse 2s ease-in-out infinite;
+}
+
+@keyframes kw-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+.kw-agent-badge__model {
+  margin-left: 3px;
+  font-family: monospace;
+  font-size: 10px;
+  color: #3b82f6;
+  background: #dbeafe;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* ── Tool steps ─────────────────────────────────────────────────────────────── */
+.kw-tool-steps {
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kw-tool-step {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  font-size: 11px;
+}
+
+.kw-tool-step--running {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.kw-tool-step--done {
+  border-color: #d1fae5;
+  background: #f0fdf4;
+}
+
+.kw-tool-step__hdr {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-size: 11px;
+  color: #374151;
+}
+
+.kw-tool-step--running .kw-tool-step__hdr {
+  color: #1d4ed8;
+}
+
+.kw-tool-step--done .kw-tool-step__hdr {
+  color: #065f46;
+}
+
+.kw-tool-step__icon {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.kw-tool-step__q {
+  color: #6b7280;
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px;
+}
+
+.kw-tool-step__result {
+  margin: 0;
+  padding: 6px 8px;
+  font-size: 10px;
+  font-family: monospace;
+  color: #374151;
+  background: rgba(0,0,0,0.03);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+@keyframes kw-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.kw-cursor::after {
+  content: '▋';
+  animation: kw-blink 1s step-end infinite;
+  color: #003087;
+}
+
+/* ── Input row ──────────────────────────────────────────────────────────────── */
+.kw-input-row {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem 0.75rem;
+  background: #fff;
+  border-top: 1px solid #e4e6ea;
+  flex-shrink: 0;
+}
+
+.kw-input {
+  flex: 1;
+  resize: none;
+  border: 1px solid #d0d3da;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.84rem;
+  font-family: inherit;
+  line-height: 1.45;
+  outline: none;
+  color: #1a1a2e;
+  background: #fff;
+  transition: border-color 0.15s;
+}
+
+.kw-input:focus     { border-color: #003087; }
+.kw-input:disabled  { background: #f5f6f8; color: #aaa; }
+
+.kw-send {
+  width: 36px;
+  height: 36px;
+  align-self: flex-end;
+  border-radius: 50%;
+  background: #003087;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+
+.kw-send:disabled              { opacity: 0.35; cursor: not-allowed; }
+.kw-send:not(:disabled):hover  { opacity: 0.85; }
+
+/* ── Consent gate ───────────────────────────────────────────────────────────── */
+.kw-consent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.kw-consent__card {
+  background: #fff;
+  border: 1px solid #e4e6ea;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.kw-consent__title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin: 0 0 0.55rem;
+  color: #1a1a2e;
+}
+
+.kw-consent__body {
+  font-size: 0.8rem;
+  color: #555;
+  margin: 0 0 0.75rem;
+  line-height: 1.55;
+}
+
+.kw-consent__list {
+  font-size: 0.78rem;
+  color: #555;
+  margin: 0 0 1rem;
+  padding-left: 1.1rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.kw-consent__btns   { display: flex; flex-direction: column; gap: 0.55rem; }
+
+.kw-consent__accept {
+  background: #003087;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s;
+}
+
+.kw-consent__accept:hover { opacity: 0.88; }
+
+.kw-consent__accept:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.kw-consent__decline {
+  background: transparent;
+  color: #666;
+  border: 1px solid #d0d3da;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.kw-consent__decline:hover { background: #f5f5f5; }
+
+.kw-unavailable {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  color: #999;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/* ── Source citation chips ──────────────────────────────────────────────────── */
+.kw-citations {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.kw-citations__label {
+  font-size: 0.64rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #999;
+  margin-right: 0.1rem;
+}
+
+.kw-cite-wrap { position: relative; }
+
+.kw-cite-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: #edf1fa;
+  color: #003087;
+  font-size: 0.62rem;
+  font-weight: 700;
+  border: 1.5px solid #c5d1e8;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  font-family: inherit;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.kw-cite-chip:hover,
+.kw-cite-chip--active {
+  background: #003087;
+  color: #fff;
+  border-color: #003087;
+}
+
+.kw-cite-chip:focus-visible {
+  outline: 2px solid #003087;
+  outline-offset: 2px;
+}
+
+/* Popover */
+.kw-cite-pop {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  width: 248px;
+  background: #fff;
+  border: 1px solid #e4e6ea;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+  padding: 0.7rem 0.8rem;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  max-height: min(50vh, calc(100vh - 80px));
+}
+
+/* Arrow pointing down to chip */
+.kw-cite-pop::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0.55rem;
+  border: 6px solid transparent;
+  border-top-color: #fff;
+  filter: drop-shadow(0 1px 0 #e4e6ea);
+}
+
+.kw-cite-pop__hdr {
+  font-size: 0.71rem;
+  font-weight: 600;
+  color: #003087;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid #f0f2f5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.kw-cite-pop__sec {
+  font-weight: 400;
+  color: #777;
+}
+
+.kw-cite-pop__text {
+  font-size: 0.71rem;
+  color: #444;
+  line-height: 1.5;
+  margin: 0;
+  word-break: break-word;
+}
+
+.kw-cite-pop--expanded .kw-cite-pop__text {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.kw-cite-expand {
+  display: block;
+  margin-top: 0.45rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.67rem;
+  font-weight: 600;
+  color: #003087;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+
+.kw-cite-expand:hover { color: #0051c8; }

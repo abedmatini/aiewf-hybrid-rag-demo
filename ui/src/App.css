@@ -1,0 +1,4 @@
+/* App.css — minimal; page-level styles are in pages/ChatPage.css and pages/AdminPage.css */
+*, *::before, *::after {
+  box-sizing: border-box;
+}

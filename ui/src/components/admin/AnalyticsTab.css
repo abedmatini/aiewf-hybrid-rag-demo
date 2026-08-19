@@ -1,0 +1,173 @@
+.analytics {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Summary cards ──────────────────────────────────────────── */
+.analytics-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.analytics-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.analytics-card--warn {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+.analytics-card__value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #003087;
+  line-height: 1;
+}
+
+.analytics-card--warn .analytics-card__value {
+  color: #b45309;
+}
+
+.analytics-card__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 4px;
+}
+
+.analytics-card__sub {
+  font-size: 0.72rem;
+  color: #9ca3af;
+}
+
+/* ── Sections ───────────────────────────────────────────────── */
+.analytics-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.analytics-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.analytics-section__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.analytics-refresh {
+  background: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  transition: background 0.15s, color 0.15s;
+}
+.analytics-refresh:hover {
+  background: #f3f4f6;
+  color: #003087;
+}
+.analytics-refresh:focus-visible {
+  outline: 2px solid #003087;
+  outline-offset: 2px;
+}
+
+/* ── Tables ─────────────────────────────────────────────────── */
+.analytics-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.analytics-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.analytics-table th {
+  background: #f9fafb;
+  color: #6b7280;
+  font-weight: 600;
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.analytics-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  vertical-align: top;
+}
+
+.analytics-table tr:last-child td {
+  border-bottom: none;
+}
+
+.analytics-table tr:hover td {
+  background: #f9fafb;
+}
+
+.analytics-table__rank {
+  color: #9ca3af;
+  width: 32px;
+}
+
+.analytics-table__msg {
+  max-width: 420px;
+  word-break: break-word;
+}
+
+.analytics-table__time {
+  white-space: nowrap;
+  color: #6b7280;
+  font-size: 0.78rem;
+}
+
+/* ── Event badge ────────────────────────────────────────────── */
+.event-badge {
+  display: inline-block;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
+/* ── States ─────────────────────────────────────────────────── */
+.analytics-state {
+  color: #6b7280;
+  font-size: 0.9rem;
+  padding: 2rem 0;
+}
+
+.analytics-state--error {
+  color: #ef4444;
+}
+
+.analytics-empty {
+  color: #9ca3af;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin: 0;
+}

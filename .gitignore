@@ -1,0 +1,73 @@
+# ── Environment & secrets ─────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+!.env.example
+!.env.staging
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+*.log
+
+# ── Node.js ───────────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm
+.yarn/
+.pnp.*
+
+# ── Vite / React build outputs ────────────────────────────────────────────────
+ui/dist/
+ui/dist-widget/chatbot-widget/
+ui/test-results/
+
+# ── Playwright ────────────────────────────────────────────────────────────────
+ui/tests/e2e/results/
+playwright-report/
+test-results/
+
+# ── Uploads (KB files are re-uploaded or seeded on the server) ───────────────
+# Keep the folder structure but ignore actual uploaded files
+api/uploads/kenvue_kb/*.txt
+api/uploads/kenvue_kb/*.md
+api/uploads/faq_kb/*.txt
+api/uploads/faq_kb/*.md
+api/uploads/faq_kb/*.png
+api/uploads/faq_kb/*.jpg
+api/uploads/faq_kb/*.jpeg
+api/uploads/faq_kb/*.webp
+api/uploads/kenvue-demo/*.md
+api/uploads/kenvue-demo/*.txt
+
+# ── Docker build artifacts ────────────────────────────────────────────────────
+*.tar
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini

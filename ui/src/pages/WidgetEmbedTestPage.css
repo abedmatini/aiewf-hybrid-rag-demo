@@ -1,0 +1,158 @@
+.wet-page {
+  min-height: 100vh;
+  background: #f8f9fb;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  padding-bottom: 56px;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+.wet-header {
+  background: #fff;
+  border-bottom: 1px solid #e4e6ea;
+  padding: 0 1.5rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.wet-header__back {
+  font-size: 0.875rem;
+  color: #003087;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.wet-header__back:hover {
+  text-decoration: underline;
+}
+
+.wet-header__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Hero ───────────────────────────────────────────── */
+.wet-hero {
+  background: linear-gradient(135deg, #003087 0%, #1a5fb4 100%);
+  color: #fff;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.wet-hero__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  line-height: 1.25;
+}
+
+.wet-hero__sub {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.wet-hero__sub code {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+/* ── Content ────────────────────────────────────────── */
+.wet-content {
+  max-width: 560px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.wet-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0 0 0.75rem;
+}
+
+.wet-examples {
+  margin: 0 0 1.25rem;
+  padding-left: 1.25rem;
+  color: #374151;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.wet-content__hint {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.wet-content__hint a {
+  color: #003087;
+  font-weight: 500;
+}
+
+/* ── Dev banner ─────────────────────────────────────── */
+.wet-dev-banner {
+  background: #fffbeb;
+  border-top: 1px solid #fcd34d;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.78rem;
+  color: #78350f;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.wet-dev-banner code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.76rem;
+}
+
+.wet-dev-reset {
+  flex-shrink: 0;
+  background: #92400e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.wet-dev-reset:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+  .wet-header__label {
+    display: none;
+  }
+
+  .wet-hero {
+    padding: 2rem 1.25rem;
+  }
+
+  .wet-hero__title {
+    font-size: 1.4rem;
+  }
+}

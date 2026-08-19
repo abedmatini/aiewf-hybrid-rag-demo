@@ -1,0 +1,32 @@
+{
+  "name": "AIEWF Hybrid RAG Demo",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "20" },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  },
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "docker compose up db -d && nohup ollama serve > /tmp/ollama.log 2>&1 &",
+
+  "forwardPorts": [8003, 5174, 3000, 5435, 11434],
+  "portsAttributes": {
+    "8003": { "label": "API (FastAPI)", "visibility": "public", "onAutoForward": "notify" },
+    "5174": { "label": "UI (React)", "visibility": "public", "onAutoForward": "openBrowser" },
+    "3000": { "label": "Langfuse", "visibility": "public", "onAutoForward": "ignore" },
+    "5435": { "label": "PostgreSQL", "onAutoForward": "ignore" },
+    "11434": { "label": "Ollama", "onAutoForward": "ignore" }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}

@@ -1,0 +1,82 @@
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f5f7fa;
+}
+
+/* ── Agent mode badge ────────────────────────────────────────────── */
+.chat-agent-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  background: #eff6ff;
+  border-bottom: 1px solid #dbeafe;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1d4ed8;
+}
+
+.chat-agent-badge__dot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.chat-agent-badge__model {
+  margin-left: 4px;
+  color: #3b82f6;
+  font-family: monospace;
+  font-size: 11px;
+  background: #dbeafe;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.chat-page__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.chat-disclaimer {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  text-align: center;
+  margin: 4px 0 8px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.chat-disclaimer__link {
+  color: #6b7280;
+  text-decoration: underline;
+}
+.chat-disclaimer__link:hover {
+  color: #003087;
+}
+.chat-disclaimer__link:focus-visible {
+  outline: 2px solid #003087;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Mobile ────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .chat-page__main {
+    padding: 0 8px;
+  }
+}

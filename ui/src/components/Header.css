@@ -1,0 +1,76 @@
+.header {
+  background: #003087;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-logo {
+  background: #E31837;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.header-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.header-title {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-widget-link {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 5px;
+  padding: 3px 8px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.header-widget-link:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.6);
+}
+.header-widget-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ── Mobile ────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .header {
+    padding: 0 0.75rem;
+  }
+  .header-name {
+    font-size: 0.95rem;
+  }
+  .header-title {
+    display: none;
+  }
+}

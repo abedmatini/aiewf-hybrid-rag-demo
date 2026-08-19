@@ -1,0 +1,427 @@
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ── Tool Steps ───────────────────────────────────────────────────────────── */
+.tool-steps {
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.tool-step {
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  background: #f9f9fa;
+  overflow: hidden;
+}
+.tool-step--running {
+  border-color: #c4b5fd;
+  background: #faf5ff;
+}
+.tool-step--done {
+  border-color: #a7f3d0;
+  background: #f0fdf4;
+}
+.tool-step__header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  background: none;
+  border: none;
+  font-size: 0.78rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  color: #374151;
+}
+.tool-step__header:hover {
+  background: rgba(0,0,0,0.03);
+}
+.tool-step__icon {
+  font-size: 0.85rem;
+}
+.tool-step--running .tool-step__icon {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.tool-step__label {
+  font-weight: 500;
+}
+.tool-step__query {
+  color: #6b7280;
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+.tool-step__result {
+  margin: 0;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  background: #f3f4f6;
+  border-top: 1px solid #e5e7eb;
+  max-height: 150px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #4b5563;
+}
+
+.messages--empty {
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* ── Suggestion chips (first-visit welcome state) ───────────────── */
+.messages--suggestions {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.suggestions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  padding: 0 0.25rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.suggestion-chip {
+  background: #fff;
+  border: 1.5px solid #c8d4f0;
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.82rem;
+  color: #003087;
+  text-align: left;
+  cursor: pointer;
+  line-height: 1.45;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.suggestion-chip:hover,
+.suggestion-chip:focus-visible {
+  background: #eef2fc;
+  border-color: #003087;
+  box-shadow: 0 1px 4px rgba(0, 48, 135, 0.12);
+  outline: none;
+}
+
+/* Loading skeleton shimmer */
+.suggestion-chip--skeleton {
+  height: 3.8rem;
+  background: linear-gradient(90deg, #f0f2f7 25%, #e4e8f2 50%, #f0f2f7 75%);
+  background-size: 200% 100%;
+  animation: sg-shimmer 1.4s infinite;
+  border: none;
+  cursor: default;
+  pointer-events: none;
+}
+
+@keyframes sg-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.message {
+  display: flex;
+}
+
+.message--user {
+  justify-content: flex-end;
+}
+
+.message--assistant {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  max-width: 72%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  line-height: 1.55;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.message--user .message-bubble {
+  background: #003087;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.message--assistant .message-bubble {
+  background: #fff;
+  border: 1px solid #e4e6ea;
+  border-bottom-left-radius: 4px;
+  color: #1a1a2e;
+}
+
+/* Medical escalation response */
+.message--escalation .message-bubble {
+  background: #fffbeb;
+  border: 1.5px solid #f59e0b;
+  color: #78350f;
+}
+
+.message-escalation-badge {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #b45309;
+  margin-bottom: 0.4rem;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.message-cursor::after {
+  content: '▋';
+  animation: blink 1s step-end infinite;
+  color: #003087;}
+
+/* ───────────────────────────────────────────────────────
+   Consent gate card
+─────────────────────────────────────────────────────── */
+.messages--consent {
+  align-items: center;
+  justify-content: center;
+}
+
+.consent-card {
+  background: #fff;
+  border: 1px solid #e4e6ea;
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+.consent-card__heading {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.consent-card__body {
+  font-size: 0.875rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.consent-card__body p {
+  margin: 0 0 0.75rem;
+}
+
+.consent-card__body ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.consent-card__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.consent-btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.15s;
+}
+
+.consent-btn:hover {
+  opacity: 0.85;
+}
+
+.consent-btn:focus-visible {
+  outline: 2px solid #003087;
+  outline-offset: 3px;
+}
+
+.consent-btn--accept:focus-visible {
+  outline-color: #fff;
+}
+
+.consent-btn--accept {
+  background: #003087;
+  color: #fff;
+  flex: 1;
+}
+
+.consent-btn--decline {
+  background: transparent;
+  color: #666;
+  border: 1px solid #d0d3da;
+}
+
+.consent-declined-msg {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: #888;
+  text-align: center;
+}}
+
+/* ── Inline source citation chips ────────────────────── */
+.citation-list {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.citation-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #999;
+  margin-right: 0.1rem;
+}
+
+.citation-wrapper {
+  position: relative;
+}
+
+.citation-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background: #edf1fa;
+  color: #003087;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border: 1.5px solid #c5d1e8;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.citation-chip:hover,
+.citation-chip--active {
+  background: #003087;
+  color: #fff;
+  border-color: #003087;
+}
+
+.citation-chip:focus-visible {
+  outline: 2px solid #003087;
+  outline-offset: 2px;
+}
+
+.citation-popover {
+  position: absolute;
+  bottom: calc(100% + 9px);
+  left: 0;
+  transform: none;
+  background: #fff;
+  border: 1px solid #e4e6ea;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  width: 270px;
+  z-index: 200;
+  padding: 0.75rem 0.85rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  max-height: min(55vh, calc(100vh - 80px));
+}
+
+/* downward arrow */
+.citation-popover::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0.6rem;
+  transform: none;
+  border: 6px solid transparent;
+  border-top-color: #fff;
+  filter: drop-shadow(0 1px 0 #e4e6ea);
+}
+
+.citation-popover__header {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #003087;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid #f0f2f5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.citation-popover__section {
+  font-weight: 400;
+  color: #777;
+}
+
+.citation-popover__text {
+  font-size: 0.74rem;
+  color: #444;
+  line-height: 1.55;
+  margin: 0;
+  word-break: break-word;
+}
+
+.citation-popover--expanded {
+  /* flex layout handles the height — text scrolls, header+button stay fixed */
+}
+
+.citation-popover--expanded .citation-popover__text {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.citation-expand-btn {
+  display: block;
+  margin-top: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #003087;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.citation-expand-btn:hover {
+  color: #0051c8;
+}
