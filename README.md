@@ -386,6 +386,7 @@ ollama pull bge-m3
 | `MAX_AGENT_ITERATIONS` | `5` | Max tool-calling loops |
 | `OLLAMA_NUM_CTX` | `4096` | Context window size |
 | `CHITCHAT_DISTANCE_THRESHOLD` | `0.70` | Cosine distance gate |
+| `DOMAIN` | `health_faq` | Guardrail pack: `health_faq`, `health`, `hr`, or `ecommerce` (see `HARNESS_ARCHITECTURE.md`). **The default (`health_faq`) blocks first-person phrasing like "do I have..."** even on non-health content — set `DOMAIN=ecommerce` in `api/.env` if you're testing with non-health KB docs. |
 
 ### GitHub Codespaces
 
