@@ -2,6 +2,10 @@
 
 > Reference implementation for **"Bypassing the Multimodal Tax: Framework-Free Hybrid RAG, Raw SQL RRF, and Live UI Telemetry"** — AI Engineer World's Fair 2026, Online Track. Every architectural claim in the talk maps to a file in this repo.
 
+**Talk recording:** https://www.youtube.com/watch?v=Akm1sqvWG4A
+**Companion article:** https://abedmatini.hashnode.dev/bypassing-the-multimodal-tax-framework-free-hybrid-rag-raw-sql-rrf-and-live-ui-telemetry
+**Author:** https://abedmatini.com/
+
 A production-grade **FastAPI + React** chatbot: local Docling ingest, hybrid retrieval (pgvector cosine + Postgres full-text, merged with Reciprocal Rank Fusion in plain Python — no vector DB, no LangChain), Ollama for local embeddings/chat, and agentic tool calling — the LLM autonomously decides which tools to invoke (search, compare, calculate) using a ReAct-style loop, with a layered guardrail pipeline in front of it.
 
 ---
@@ -455,5 +459,13 @@ Feature-complete demo: hybrid RRF retrieval, Docling ingest with 4 chunking stra
 
 ---
 
+## Talk resources
+
+- 🎥 Recording: https://www.youtube.com/watch?v=Akm1sqvWG4A
+- ✍️ Companion article: https://abedmatini.hashnode.dev/bypassing-the-multimodal-tax-framework-free-hybrid-rag-raw-sql-rrf-and-live-ui-telemetry
+- 🌐 Author: https://abedmatini.com/
+
 ## License
+
+MIT — built as a public reference for the AI Engineer World's Fair 2026 talk. Use it, fork it, adapt it.
 
